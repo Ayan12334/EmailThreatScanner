@@ -53,9 +53,9 @@ def analyse_headers(headers: List[Dict[str, str]]) -> Dict[str, Any]:
         flags.append(f"Reply-To mismatch detected: From '{from_header}' vs Reply-To '{reply_to}'")
 
     # Parse basic SPF/DKIM/DMARC status
-    spf_pass = "spf=pass" in auth_results.lower()
-    dkim_pass = "dkim=pass" in auth_results.lower()
-    dmarc_pass = "dmarc=pass" in auth_results.lower()
+    spf_pass = "spf=pass" in auth_results.lower() # Sender Policy Framework - dns record 
+    dkim_pass = "dkim=pass" in auth_results.lower() # Domainkeys Identified Mail - private key used to make signatures
+    dmarc_pass = "dmarc=pass" in auth_results.lower() # Domain-based Message Authentication, Reporting, and Conformance
 
     if auth_results and not spf_pass:
         flags.append("SPF check failed or missing")

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Local email threat analysis dashboard" />
+    <title>Email Threat Scanner</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LOCAL ANALYSIS CONSOLE</p>
+        <h1>Email Threat Scanner</h1>
+      </div>
+      <div class="connection" aria-live="polite">
+        <span class="connection__pulse" aria-hidden="true"></span>
+        <span id="connection-status">Connecting</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Latest scan summary">
+        <article class="metric">
+          <span class="metric__label">Messages</span>
+          <strong class="metric__value" id="message-count">—</strong>
+          <span class="metric__context">in latest scan</span>
+        </article>
+        <article class="metric metric--high">
+          <span class="metric__label">High risk</span>
+          <strong class="metric__value" id="high-risk-count">—</strong>
+          <span class="metric__context">require review</span>
+        </article>
+        <article class="metric metric--warning">
+          <span class="metric__label">Auth flags</span>
+          <strong class="metric__value" id="auth-flag-count">—</strong>
+          <span class="metric__context">across messages</span>
+        </article>
+        <article class="metric">
+          <span class="metric__label">VT detections</span>
+          <strong class="metric__value" id="detection-count">—</strong>
+          <span class="metric__context">malicious or suspicious</span>
+        </article>
+      </section>
+
+      <section class="scan-heading">
+        <div>
+          <p class="eyebrow">LATEST TELEMETRY</p>
+          <h2>Message analysis</h2>
+        </div>
+        <time id="scan-time">Waiting for a scan</time>
+      </section>
+
+      <div id="dashboard-error" class="notice notice--error" role="alert" hidden></div>
+      <div id="empty-state" class="empty-state">
+        <div class="empty-state__mark" aria-hidden="true">⌁</div>
+        <h2>No reports received</h2>
+        <p>Run the Python scanner to send the first analysis payload.</p>
+      </div>
+      <section id="report-list" class="report-list" aria-live="polite" aria-label="Email reports"></section>
+    </main>
+  </body>
+</html>

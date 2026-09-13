@@ -3,3 +3,7 @@ token.json
 __pycache__/
 venv/
 .env
+.env.*
+*.py[cod]
+dashboard/node_modules/
+setup.txt
